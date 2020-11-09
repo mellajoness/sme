@@ -1,0 +1,21 @@
+.container {
+  background-image: url('../../../assets/images/Group.png');
+  background-position: center;
+  background-size: contain;
+  background-color: #F8F8F8;
+  min-height: 78vh;
+  padding: 30px;
+  header{
+
+  }
+  p {
+    font-family: 'Open sans', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+  }
+}
+@media (max-width: 768px) {
+  p {
+    font-size: 0.8rem;
+  }
+}

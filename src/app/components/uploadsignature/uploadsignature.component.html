@@ -1,0 +1,88 @@
+<div class="parent">
+  <div class="please">Please follow the instructions below, on the standard of image to be uploaded</div>
+  <div class="select">Select a valid image</div> 
+  <div class="select">Size must not be more than 240KB</div>
+  <div class="select">Select Image for both Passport and Signature</div>
+  <div class="select">Image must have only one of these formats: jpg, jpeg, png.
+  <div class="select">Check the Declaration Box.</div>
+  <div class="select">Click Submit. </div>
+  
+  <div class="seperate">
+  <div class="userprof">
+     <div class="details">First Name</div>
+     <div class="details">Phone Number</div>
+     <div class="details">Email Address</div>
+     <div class="details">Rc Number</div>
+   
+  </div>
+  
+  <div class="userprof">
+     <div class="value">{{userData.businessName}}</div>
+     <div class="value">{{userData.phoneNumber}}</div>
+     <div class="value">{{userData.businessEmail}}</div>
+     <div class="value">{{userData.accountNumber}}</div>
+     <div class="details">Upload Signature</div>
+     <form>
+      <div class="error"> {{imageError}}</div>
+      <div class="form-group">
+          <fieldset class="form-group">
+    
+            
+          
+              <div class="custom-file fileInputProfileWrap">
+                  <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile">
+                  <div class="img-space">
+    
+                      <ng-container *ngIf="isImageSaved; else elseTemplate">
+                          <img [src]="cardImageBase64" />
+                      </ng-container>
+                      <ng-template #elseTemplate>
+    
+                          <img src="../../../assets/images/imgicon.png" class="img-responsive">
+                      </ng-template>
+    
+                  </div>
+    
+              </div>
+          </fieldset>
+      </div>
+      <!-- <button class="btn" (click)="uploadFileToActivity()">Submit</button> -->
+      <!-- <a class="btn btn-danger" (click)="removeImage()" *ngIf="isImageSaved">Remove</a> -->
+    </form>
+  
+  
+  
+  </div>
+  
+  
+  
+  </div>
+  <div class="declare">Declaration/Disclaimer</div>
+  
+  <div class="checkaccept">
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="example-radio-group"
+    [(ngModel)]="favoriteSeason">
+    <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+    </mat-radio-button>
+  </mat-radio-group>
+  
+  <div class="accept">I accept that the above information is credible to be presented in any court of law.</div>
+  </div>
+  
+  <button class="btn" (click)="uploadFileToActivity()" >
+    {{ loading ? '...please wait while we validate your otp':'Submit'}}
+  </button>
+  
+  
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  

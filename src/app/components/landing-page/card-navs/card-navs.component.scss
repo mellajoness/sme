@@ -1,0 +1,12 @@
+button {
+  background: rgba(11, 30, 106, 0.88);
+  border-radius: 41px;
+  width: 60%;
+  letter-spacing: 4px;
+  cursor: pointer;
+  &:hover {
+    background: #fff;
+    color: rgba(11, 30, 106, 0.88);
+    border: 2px solid #0B1E6A;
+  }
+}

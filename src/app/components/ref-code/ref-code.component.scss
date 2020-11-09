@@ -1,0 +1,110 @@
+.container {
+  height: 82.5vh;
+  background-color: #F8F8F8;
+  background-image: url('../../../assets/images/Group.png');
+  background-position: center;
+  background-size: contain;
+  margin-top: 10px;
+  .row  {
+    padding: 20px;
+    .left {
+      #headline {
+        color: rgba(0, 0, 0, 0.54);
+        font-weight: bold;
+        font-family: Open sans-serif;
+        font-size: 1.1rem;
+        margin-bottom: 7px;
+        letter-spacing: 1px;
+      }
+      .input input {
+        margin-bottom: 15px;
+        border: none;
+        padding: 15px;
+        font-family: Open sans-serif;
+        font-size: 1.2rem;
+       }
+      h4 {
+        color: #343434;
+        letter-spacing: 2px;
+        font-weight: bold;
+      }
+      #desc {
+        font-family: Open Sans;
+        font-style: normal;
+        font-size: 17px;
+        line-height: 58px;
+        text-align: justify;
+        letter-spacing: 0.0044em;
+        color: #0e237e;
+      }
+      .refCode {
+        .button {
+          background: #18319A;
+        color: #fff;
+        font-family: 'Open Sans-serif';
+        font-weight: 400;
+        border-radius: unset;
+        font-size: 14px;
+        padding: 10px 35px;
+        }
+        .noRef {
+          margin-top: 10px;
+          cursor: pointer;
+          font-size: 0.9rem;
+          color: #0e237e;
+          float: left;
+        }
+      }
+      .uk-alert-success {
+        margin-top: 55px !important;
+        p{
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 768px) {
+  .right {
+    display: none;
+  }
+  .container {
+    justify-items: start;
+    align-items: start;
+    height: 100vh !important;
+  }
+  .left {
+    h4 {
+      margin-bottom: 15px;
+    }
+    .input {
+      width: 100% !important;
+    }
+    .input input {
+      font-family: Open sans-serif;
+      font-size: 1rem !important;
+     }
+     .button {
+       width: 100%;
+     }
+    #desc {
+      font-size: 14px !important;
+      letter-spacing: 0px !important;
+      font-weight: normal !important;
+      line-height: 28px !important;
+    }
+    .noRef {
+      text-align: left;
+    }
+    .refCode {
+      margin-top: 30px;
+    }
+    .uk-alert-success {
+      margin-top: 55px !important;
+      p{
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

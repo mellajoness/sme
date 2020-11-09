@@ -1,0 +1,23 @@
+<div>
+ <div class="please">Please enter the four digit OTP sent to your Phone Number, Registered on this account number **** * *** *** {{lastFourNumb}} </div>
+ <div class="otp">Enter OTP</div>
+
+ <form [formGroup] = "refCodeform" >
+  <div class="ui action input" >
+    <input type="number" placeholder="Enter Otp sent to your phone number " formControlName = "refcode" pattern = "^\d{6}" class="form">
+  </div><br><br>
+
+
+  <div class="seperate">
+  <button class="btn" (click) ="validateOtp()" [disabled] = "refCodeform.invalid" >
+    <!-- <i class="fas fa-spin fa-spinner" *ngIf="loading"></i> -->
+    {{ loading ? '...please wait while we validate your otp' : 'SUBMIT'}}
+</button>
+
+<button class="btnoutline" (click) ="cancel()" >
+  <!-- <i class="fas fa-spin fa-spinner" *ngIf="loading"></i> -->
+  CANCEL
+</button>  
+</div>
+</form>
+</div>

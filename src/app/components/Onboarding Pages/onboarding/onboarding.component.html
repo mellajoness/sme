@@ -1,0 +1,173 @@
+<div class="container">
+  <app-error-page [errorMessage]='errorMessage'></app-error-page>
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="busninessInfo">
+      <form [formGroup]="busninessInfo">
+        <ng-template matStepLabel>Business Info.</ng-template>
+        <h4>Tell us about your business</h4>
+        <small>Your business details is used in opening a business account for you.</small><br>
+        <mat-form-field style="margin-top: 35px;">
+          <input matInput placeholder="Business Name" formControlName="name" required>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Business Phone Number" type="text" formControlName="phoneNumber"
+            pattern="^((\+)*(?:[\d]{7,15}))$" required>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Business Email Address" type="email" formControlName="email" required>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput maxlength="25" placeholder="Referral Code from Account Officer (optional)"
+            formControlName="referralStaff">
+        </mat-form-field>
+        <div style="margin-top:50px;">
+          <button mat-button matStepperNext [disabled]="busninessInfo.invalid">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="validationForm">
+      <form [formGroup]="validationForm">
+        <ng-template matStepLabel>Validation</ng-template>
+        <h4>Let us verify your RC Number</h4>
+        <small class="mb-3">Your Company Registration Number is used to identify your business, company or limited
+          partnership and verify its legal existence as an incorporated entity.</small><br>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <mat-radio-group aria-label="Select an option" formControlName="businessCategory">
+              <label for="validationType" style="margin-top: 51px; color: rgb(146, 146, 146);">Business Category</label><br>
+              <mat-radio-button [value]="category.value" *ngFor="let category of businessCategory"
+                (change)="radioChange($event)">
+                {{category.name}}
+              </mat-radio-button>
+            </mat-radio-group><br>
+            <mat-radio-group aria-label="Select an option" *ngIf="showRegistered" [(ngModel)]="modeGroup"
+              [ngModelOptions]="{standalone: true}">
+              <label style="margin-top: 12px; color: rgb(146, 146, 146);">RC or BN Number</label><br>
+              <mat-radio-button [disabled]='displayError' [value]="mode.value"
+                *ngFor="let mode of modeCategory; let i = index;" (change)="modeChange($event)"
+                [attr.checked]="i === 0 ? '' : null">
+                {{mode.name}}
+              </mat-radio-button>
+            </mat-radio-group>
+            <ng-container *ngIf="showRegistered">
+              <br>
+            </ng-container>
+            <mat-form-field *ngIf="showRegistered" class="w100">
+              <input matInput placeholder="{{mode ==='2' ? 'BN Number' : 'RC Number'}}" formControlName="rCNumber"
+                maxlength="{{mode ==='2' ? '9' : '8'}}" (ngModelChange)="rcNumberChanged($event)" [(ngModel)]="rcNumber">
+            </mat-form-field>
+            <ng-container *ngIf="showRegistered">
+              <br>
+            </ng-container>
+            <mat-form-field *ngIf="showRegistered && showAccountType" class="w100">
+              <mat-label>Account Type</mat-label>
+              <mat-select formControlName="accountType" (ngModelChange)="accountTypeChange($event)" [(ngModel)]="accountTypeValue">
+                <mat-option *ngFor="let account of accountTypeRegistered" [value]="account">
+                  {{account.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <ng-container *ngIf="showRegistered && showAccountType">
+              <br>
+            </ng-container>
+            <small *ngIf="!showRegistered && showAccountType">Because this is an unregistered business, the account name
+              <span style="font-weight: 600; text-transform: uppercase;">{{userOtpData.firstName}}
+                {{userOtpData.lastName}}</span> is
+              the account holder's name
+            </small>
+            <ng-container *ngIf="!showRegistered && showAccountType">
+              <br><br>
+            </ng-container>
+            <div *ngIf="showRegistered && showAccountType && sharedData.productCode" class="account-type-inline">
+              <div [ngClass]="!read ? 'div-section' : 'div-section-expand'">
+                <app-productdetails></app-productdetails>
+              </div>  
+              <div (click)="expand()"><a style="color: #0E237E; font-size: 14px; font-style: italic;">{{!read ? 'Read More' : "Read Less"}}</a></div>
+            </div>
+            <ng-container *ngIf="showRegistered && showAccountType && sharedData.productCode">
+              <br>
+            </ng-container>
+            <mat-form-field *ngIf="!showRegistered && showAccountType" class="w100">
+              <mat-label>Account Type</mat-label>
+              <mat-select formControlName="accountType" (ngModelChange)="accountTypeChange($event)" [(ngModel)]="accountTypeValue">
+                <mat-option *ngFor="let account of accoutTypeUnregistered" [value]="account">
+                  {{account.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <ng-container *ngIf="!showRegistered && showAccountType">
+              <br>
+            </ng-container>
+            <div *ngIf="!showRegistered && showAccountType && sharedData.productCode" class="account-type-inline">
+              <div [ngClass]="!read ? 'div-section' : 'div-section-expand'"><app-productdetails></app-productdetails></div>  
+              <div (click)="expand()"><a style="color: #0E237E; font-size: 14px; font-style: italic;">{{!read ? 'Read More' : "Read Less"}}</a></div>
+            </div>
+            <ng-container *ngIf="!showRegistered && showAccountType && sharedData.productCode">
+              <br>
+            </ng-container>
+            <mat-form-field class="w100">
+              <mat-label>Business Type</mat-label>
+              <mat-select formControlName="businessType">
+                <mat-option *ngFor="let occupation of occupations" [value]="occupation.code">
+                  {{occupation.occupation}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field><br>
+            <mat-form-field class="w100">
+              <textarea matInput placeholder="Business Address" formControlName="businessAddress"></textarea>
+            </mat-form-field><br>
+            <mat-form-field class="w100">
+              <mat-label>Preferred Branch</mat-label>
+              <mat-select formControlName="preferredBranch">
+                <mat-option *ngFor="let branch of branches" [value]="branch.address">
+                  {{branch.desc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field><br>
+            <div *ngIf="(showRegistered && showAccountType && sharedData.productCode) || (!showRegistered && showAccountType && sharedData.productCode)">
+              <label class="label-container">By clicking on the Accept button, I/We hereby confirm that I/We have read through the features, terms and conditions of the product, <b>{{validationForm.controls['accountType'].value.name}}</b> and I/we hereby irrevocably and unreservedly accept and agree to be bound by the covenants, terms and conditions of the said product.
+                <input (ngModelChange)="agreeToTermsChange($event)" [(ngModel)]="agreeToTerms" [ngModelOptions]="{standalone: true}" type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <ng-container *ngIf="showRegistered && showAccountType && sharedData.productCode">
+              <br>
+            </ng-container>
+            <br>
+    
+            <!-- reCaptcha -->
+            <div class="recaptcha form-group"
+              *ngIf="!showRegistered && showAccountType && validationForm.value.accountType &&
+              validationForm.value.businessAddress && validationForm.value.businessType && validationForm.value.businessCategory && validationForm.value.preferredBranch && agreeToTerms">
+              <re-captcha (resolved)="resolved($event)" siteKey="6LfVDdIUAAAAAC9-UMEc75aMTrJnRy5FIXlL9YrM"></re-captcha>
+            </div>
+    
+            <!-- reCaptcha -->
+            <div class="recaptcha form-group" *ngIf="showRegistered && validationForm.valid && !displayError && agreeToTerms">
+              <re-captcha (resolved)="resolved($event)" siteKey="6LfVDdIUAAAAAC9-UMEc75aMTrJnRy5FIXlL9YrM"></re-captcha>
+            </div>
+    
+            <div class="uk-alert-danger" uk-alert *ngIf="displayError">
+              <a class="uk-alert-close" (click)="retry()" style="margin-top: -8px;opacity: 1!important;">
+                <span style="background: #f0506e;padding: 5px 10px;color: #ffffff;font-size: 12px;">Retry</span>
+              </a>
+              <p style="font-family: 'Open Sans-serif'">{{ displayedErrorMessage }}</p>
+            </div>
+            <div style="margin-top:50px;">
+              <button [disabled]='displayError' mat-button matStepperPrevious class="back" *ngIf="!loading">Back</button>
+              <button mat-button matStepperNext (click)="setAccountCreationParams()"
+                [disabled]='!recaptchaIsValid || displayError' class="submit">
+                {{ loading ? 'Please wait while we create your account.' : 'Submit'}}
+              </button>
+            </div>
+          </div>
+          <div class="col-lg-6 account-type">
+            <app-productdetails></app-productdetails>
+          </div>
+        </div>
+
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

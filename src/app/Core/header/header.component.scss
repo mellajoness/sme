@@ -1,0 +1,28 @@
+.topNav {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 10px;
+
+  .logo {
+    justify-self: center
+  }
+
+  .navText {
+    justify-self: center;
+    color: #0E237E !important;
+    font-weight: 700;
+    align-self: center;
+
+    p {
+      color: #0E237E !important;
+    }
+  }
+}
+
+// @media( max-width: 768px) {
+//   .text-end {
+//     text-align: left;
+//     font-size: 0.8rem;
+//     margin-left: 3px;
+//   }
+// }

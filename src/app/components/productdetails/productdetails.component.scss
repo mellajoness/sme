@@ -1,0 +1,27 @@
+.item-header {
+    background: #0E237E;
+    color: #ffffff;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.item-row {
+    display: -webkit-box;
+    width: 100%;
+    line-height: 1.8;
+}
+
+.icon {
+    height: 10px;
+}
+
+.icon-container {
+    padding-left: 16px;
+}
+
+.icon-container_ {
+    width: 80px;
+}

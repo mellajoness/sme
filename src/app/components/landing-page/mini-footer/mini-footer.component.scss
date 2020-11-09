@@ -1,0 +1,26 @@
+.item {
+  color: #0e237e;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+@media(max-width: 768px) {
+  .container {
+    margin-top: 15px !important;
+  }
+  .right-content {
+    margin-top: 10px;
+    h4 {
+      display: none;
+    }
+    p {
+      font-size: 0.8rem;
+      text-align: left !important;
+    }
+  }
+  .left-content {
+    .item {
+      font-size: 0.8rem;
+    }
+  }
+}

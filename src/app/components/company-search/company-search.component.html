@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row" style="height:inherit; padding:45px">
+    <div class="col-md-6 col-sm-12 content">
+        <div class="nav">
+          <i class="arrow left icon" style="margin-bottom:20px; cursor: pointer;" (click) = "navigate()"></i>
+        </div>
+        <div class="uk-alert-danger" uk-alert *ngIf ="displayError">
+          <a class="uk-alert-close" uk-close (click) ="closeAlert()"></a>
+          <p style="font-family: 'Open Sans-serif'">{{ displayedErrorMessage }}</p>
+        </div>
+      <h3>Welcome!</h3>
+      <p>Create a Business account in less than 5 minutes and get your account number instantly.</p>
+      <div class="companySearch mb-4" *ngIf="showCompanySearchForm" @fade>
+        <form [formGroup] = 'companySearchForm'>
+          <div class="ui action input"  style="width: 100%;">
+            <input type="text" placeholder="Enter your business name" formControlName="companyName">
+          </div>
+          <button class="ui button" (click) = "searchCompany()" [disabled] ='companySearchForm.invalid'>
+            <!-- <i class="fas fa-spin fa-spinner" *ngIf="checking"></i> -->
+              {{ checking ? '...searching your company name' : 'Let\'s Go'}}
+          </button>
+        </form>
+      </div>
+      <div class="bvn"  *ngIf="showBvnForm" @fade>
+        <form [formGroup] = 'bvnForm'>
+          <div class="ui action input" style="width: 100%;">
+            <input type="number" placeholder="Enter your BVN" pattern ="^(\d{11})" formControlName = "bvnNum" required>
+          </div>
+          <div class="buttons">
+            <button class="ui button verify mr-5"  [disabled] = "bvnForm.invalid" (click) = 'verifyBvn()'>
+                <!-- <i class="fas fa-spin fa-spinner" *ngIf="checking"></i> -->
+                {{ checking ? 'Please wait  while we verify your BVN' : 'Verify'}}
+            </button>
+            <!-- <button class="ui button skip" routerLink="/personal" *ngIf="!checking">Skip</button> -->
+          </div>
+        </form>
+      </div>
+      <div class="bvn"  *ngIf="showOtpForm" @fade>
+        <p *ngIf="customerOtpDetails">An OTP has been sent to {{customerOtpDetails.phoneNumber}}</p>
+        <form [formGroup] = 'otpForm'>
+          <div class="ui action input" style="width: 100%;">
+            <input inputmode="numeric" type="text" placeholder="Enter OTP" pattern ="^(\d{6})" formControlName = "otp" required>
+          </div>
+          <div class="buttons">
+            <button class="ui button verify mr-5"  [disabled] = "otpForm.invalid" (click) = 'verifyOtp()'>
+                <!-- <i class="fas fa-spin fa-spinner" *ngIf="checking"></i> -->
+                {{ checking ? 'Please wait  while we validate OTP' : 'Verify'}}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+.footer {
+  display: grid;
+  background: #0E237E;
+  color: white;
+  padding: 15px;
+  .copyright {
+    align-self: center;
+    p {
+      font-size: 0.9rem;
+  }
+  }
+  .socials {
+    justify-self: end;
+    img {
+      height: 20px;
+      margin: 10px;
+    }
+  }
+}
+
+@media(max-width: 768px) {
+  .footer {
+    padding: 10px;t
+    p {
+      font-size: 0.8rem;
+    }
+    .link, .text-left {
+      font-size: 0.7rem !important;
+    }
+  }
+}

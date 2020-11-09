@@ -1,0 +1,84 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+.mat-step-header .mat-step-icon {
+  background-color: #0E237E !important;
+  font-size: 0.8rem !important;
+}
+.mat-step-header {
+  flex-direction: column !important;
+}
+.mat-step-label {
+  color: #18319A;
+  font-family: 'Lato', sans-serif;
+}
+mat-form-field {
+  width: 50%;
+  font-family: 'Lato', sans-serif !important;
+  font-size: 0.8rem !important;
+}
+mat-radio-button {
+  font-family: 'Lato', sans-serif !important;
+  font-size: 0.8rem !important;
+  padding: 5px;
+}
+.mat-button {
+  background: #18319A;
+  color: #fff;
+}
+// in global stylesheet
+.mat-input-container.app-input-no-underline .mat-input-underline {
+  display: none;
+}
+.mat-option-text {
+  font-family: 'Open sans', sans-serif !important;
+}
+.mat-horizontal-stepper-header-container {
+  width: 60%;
+}
+
+.mat-select {
+  font-family: 'Open sans', sans-serif;
+}
+
+.mat-expansion-panel-header-description {
+  font-family: 'Open sans', sans-serif;
+}
+.mat-expansion-panel-header-title {
+  color: rgba(0,0,0,.87);
+  font-family: 'Lato' !important;
+  font-weight: bold !important;
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #3F51B5 !important;
+}
+
+@media (max-width: 768px) {
+  .mat-horizontal-stepper-header-container {
+    width: 100%;
+  }
+  .mat-expansion-panel-header-description {
+    font-size: 0.8rem !important;
+  }
+  .mat-expansion-panel-header-title {
+  font-size: 0.8rem;
+  }
+}
+
+.div-section {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out; // note that we're transitioning max-height, not height!
+  height: auto;
+  max-height: 70px; // still have to hard-code a value!
+}
+
+.div-section-expand {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out; // note that we're transitioning max-height, not height!
+  height: auto;
+  max-height: 800px; // still have to hard-code a value!
+}
+

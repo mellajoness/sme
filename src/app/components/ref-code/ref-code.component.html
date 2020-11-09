@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="nav" style="padding: 20px;">
+      <i class="arrow left icon" style="margin-bottom:20px; cursor: pointer;" routerLink="/"></i>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 left">
+      <app-error-page [errorMessage] = "errorMessage"></app-error-page>
+      <h4>Fidelity</h4>
+      <h4> Corporate Account</h4>
+      <p id="desc">Whether you have a registered business aiming for the next level, or an unregistered company.</p>
+      <div class="refCode">
+        <p  *ngIf="!showDescription1" style="font-size: 0.9rem;">You are almost done, please provide your registration code</p>
+        <p *ngIf="showDescription1" style="font-size: 0.9rem;">Enter the registration code sent to your phone</p>
+        <form [formGroup] = "refCodeform">
+          <div class="ui action input" style="width:50%">
+            <input type="text" placeholder="Registration Code" formControlName = "refCode" pattern = "^\d{6}">
+          </div><br>
+          <button class="ui icon button" (click) ="validateRefCode()" [disabled] = "refCodeform.invalid">
+              <!-- <i class="fas fa-spin fa-spinner" *ngIf="loading"></i> -->
+              {{ loading ? '...please wait while we validate your code' : 'Go'}}
+          </button>
+        </form>
+        <a routerLink="/search" *ngIf="showDescription2 === false">
+          <p class="noRef" style="font-size: 0.9rem;">I don't have a registration code</p>
+        </a>
+        <a *ngIf="showDescription2">
+          <p class="noRef" (click) = "resendCode()">Resend registration Code</p>
+        </a>
+        <small *ngIf="resendingCode">...we are resending your code, please wiat a minute.</small>
+      <div class="uk-alert-success" uk-alert  *ngIf="showSuccessAlert" style="background: #8ae2c3;">
+        <a class="uk-alert-close" uk-close  (click)="closeSuccessAlert()"  style="opacity: 1; color: #fff"></a>
+        <p style="color: #fff">An SMS with the new registration code has been sent to {{ phoneNumber }}.</p>
+      </div>
+      </div>
+  </div>
+  <!-- <div class="col-lg-5 col-md-5 col-sm-12 right">
+    <img src="./assets/images/undraw_Mobile_app_p3ts.png" alt="banner">
+  </div> -->
+  <!-- <app-mini-footer></app-mini-footer> -->
+  </div>
+</div>
+

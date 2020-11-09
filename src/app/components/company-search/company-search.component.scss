@@ -1,0 +1,76 @@
+.container {
+  background-image: url('../../../assets/images/Group.png');
+  background-position: center;
+  background-size: contain;
+  background-color: #F8F8F8;
+  height: 81vh;
+  margin-top: 20px;
+  .content {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    .companySearch, .bvn {
+      display: flex;
+      flex-direction: column;
+      /* Hide HTML5 Up and Down arrows. */
+      input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        // margin: 0;
+      }
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+
+       .button {
+        background: #18319A;
+        color: #fff;
+        font-family: 'Open Sans-serif';
+        font-weight: 400;
+        border-radius: unset;
+        font-size: 14px;
+       }
+    }
+    .bvn {
+
+    }
+     p {
+      font-family: Open sans-serif;
+      font-size: 1rem;
+      color: #767676;
+     }
+     h3 {
+      font-weight: bold;
+      font-size: 34px;
+      line-height: 41px;
+      color: #343434;
+      letter-spacing: 2px;
+     }
+  }
+}
+
+.input input {
+  margin-bottom: 15px;
+  border: none;
+  padding: 15px;
+  font-family: Open sans-serif;
+  font-size: 1.2rem;
+  // width: 90%;
+ }
+
+.errorForm {
+  border: 1px solid red !important;
+}
+
+@media (max-width: 768px) {
+  .container {
+    height: 77vh;
+  }
+  .row {
+    padding: 0px !important;
+  }
+  .button {
+    padding: 9px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Open sans-serif';
+  margin-bottom: 40px;
+  background-image: url('../../../assets/images/Group.png');
+  background-position: center;
+  background-size: contain;
+  background-color: #F8F8F8;
+  header {
+    margin-top: 30px;
+    h3 {
+      color: #343434;
+      font-family: 'Open sans-serif';
+    }
+  }
+  .successText {
+    h5 {
+      font-family: inherit;
+      font-size: 1.3rem
+    }
+  }
+  .item {
+    p {
+      letter-spacing: 0.5px;
+    font-size: 1rem;
+    color: #4fc143;
+    font-weight: 600;
+    }
+  }
+  .list {
+    h3 {
+      color: #0d237d;
+      font-size: 1.5rem;
+      margin-top: 20px;
+    }
+  }
+  .image {
+    margin: 29px 20px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media(max-wdith: 768px) {
+  .container {
+    margin-bottom: 0px !important;
+  }
+}
